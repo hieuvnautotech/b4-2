@@ -1,0 +1,97 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Log in</title>
+    <script src="lib/jquery/dist/jquery.js"></script>
+</head>
+<body>
+    <table style="margin:0 auto;">
+        <tr>
+            <td>User name</td>
+            <td>
+                <input type="text" id="txtUser" placeholder="nhap user" />
+            </td>
+        </tr>
+        <tr>
+            <td>Password</td>
+            <td>
+                <input type="password" id="txtPass" placeholder="nhap mat khau" />
+            </td>
+
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align:center"><button id="btnLogin">Login</button></td>
+            
+
+        </tr>
+        
+
+    </table>
+    <div id="thongbaoloi">Thong bao loi</div>
+    <style>
+        .loi {
+            color : red; background-color : yellow;
+        }
+
+    </style>
+    <script>
+        function kiemTraRong(obj)
+        {
+            if (obj.val().length == 0)
+            {
+                obj.addClass("loi");
+                return true;
+            }
+            obj.removeClass("loi");
+            return false;
+        }
+        $(function () {
+            $("#btnLogin").click(function () {
+                let user = $("#txtUser");
+                let pass = $("#txtPass");
+
+                if ($(this).html()=="Logout")
+                {
+                    $(this).html("Login");
+                    user.next().remove();
+                    user.show();
+                    user.val("");
+                    pass.next().remove();
+                    pass.show();
+                    pass.val("");
+                    $("#thongbaoloi").html("");
+                    return true;
+                }
+                //if (user.val().length==0)
+                //{
+                //    user.addClass("loi");
+                //    return false;
+                //}
+                if (kiemTraRong(user)||kiemTraRong(pass))
+                {
+                    return false;
+                }
+                ////kiem tra user vs pass dung ko ?
+                if (user.val().length<4||pass.val().length<4)
+                {
+                    $("#thongbaoloi").html("Dang nhap that bai");
+                    return false;
+                }
+                $("#thongbaoloi").html("Dang nhap thanh cong");
+                $(this).html("Logout");
+                //an 2 the input
+                user.hide();
+                pass.hide();
+                //them 2 text
+                user.after('<span>' + user.val() + '</span>');
+                let passTemp = $("<span/>").html(pass.val());
+                pass.after(passTemp);
+            });//end click login
+
+        });//end doc ready
+
+    </script>
+
+</body>
+</html>

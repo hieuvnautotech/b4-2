@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="lib/jquery/dist/jquery.js"></script>
+</head>
+<body>
+    <div>
+        From: <input type="text" id="txtFrom" value="NN" />
+        <br />
+        <button id="btn">
+            >>>
+
+        </button>
+        <br />
+        <button type="button">send</button>
+        To: <input type="text" id="txtTo" />
+
+    </div>
+    <script>
+
+        //$(function () {
+        //    var giaTri = $("#txtFrom").val();
+            //$("#txtFrom").attr("value");
+        //});
+        $(function () {
+            $("#btn, [type='button']").click(function (event) {
+                event.preventDefault();       //chan chuc nang mac dinh submit cua button
+                var giaTri = $("#txtFrom").val();
+                $("#txtTo").val(giaTri);
+                $("#txtTo").css("background-color","yellow");
+            });
+        });
+    </script>
+</body>
+</html>
